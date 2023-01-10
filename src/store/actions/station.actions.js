@@ -74,6 +74,9 @@ export function setFilterBy(filterBy) {
 export function setSearchTerm(term) {
     return async (dispatch) => {
         try {
+            if(!term)return dispatch({ type: 'SET_QUERY', query: null })
+
+            
             const queryStations = await stationService.search(term)
             dispatch({ type: 'SET_QUERY', query: queryStations })
             dispatch({ type: 'SET_SEARCH', searchTerm: term })

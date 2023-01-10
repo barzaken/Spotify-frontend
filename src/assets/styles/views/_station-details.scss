@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     overflow-y: hidden;
-    // margin-bottom: 50px;
     margin-bottom: 80px !important;
 
     .station-showcase {
@@ -12,9 +11,7 @@
         flex-direction: column;
         padding: 22px;
         gap: 25px;
-        // background: rgb(83, 83, 83);
         background: linear-gradient(180deg, rgba(83, 83, 83, 1) 0%, rgba(18, 18, 18, 1) 84%);
-        // background: linear-gradient(180deg, rgb(201, 30, 30) 0%, rgba(18, 18, 18, 1) 84%);
         h1{
             cursor: pointer;
             width: max-content;
@@ -61,6 +58,8 @@
     }
     .play-btn{
         transition: 0.25s;
+        color: $clr1;
+        font-size: 66px;
         &:hover{
             scale: 1.1;
         }
@@ -105,7 +104,6 @@
             width: 180px;
             height: 180px;
         }
-        // max-width: 100%;
         .edit-info {
             flex: 1;
             display: flex;
@@ -124,4 +122,5 @@
         padding: 8px 32px;
     }
 }
+
 

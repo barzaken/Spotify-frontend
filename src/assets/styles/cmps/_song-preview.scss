@@ -9,7 +9,7 @@
             justify-content: center;
             gap: 7px;
             .playing{
-                color:  #1ed760;
+                color:  $clr1
             }
         }
         .img {
@@ -41,8 +41,6 @@
             }
             .play-icon{
                 display:block;
-                // background-color: red;
-
             }
         }
         background-color: hsla(0, 10%, 86%, 0.1);

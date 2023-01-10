@@ -50,11 +50,14 @@ export const CategoryPage = () => {
         <section className="category-page main-layout">
             <h1 className="mobile-input-title">Search</h1>
             <input type="search" onChange={(event) => setTerm(event.target.value)} className='mobile-input' placeholder="Search for music"  />
+            <div className="search-header">
             <h1>{searchTerm ? `Results for ${searchTerm}` : 'Explore Categories'}</h1>
+            {queryItems && <button onClick={() => dispatch(setSearchTerm(null))}>Clear Search</button>}
+            </div>
             {(searchTerm && queryItems) ? <div className="song-list">
                 <div className="songs">
                 {queryItems.slice(0, 2).map((song) =>
-                    <div className="song" key={song.songId} >
+                    <div onClick={() => playSong(song)} className="song" key={song.songId} >
                         <h1>{song.song_title}</h1>
                         <img src={song.song_cover} alt='' />
                     </div>

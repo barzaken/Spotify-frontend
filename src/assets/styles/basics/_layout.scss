@@ -10,11 +10,6 @@
         "side-bar app";
 
     @media screen and (max-width: 640px) {
-        // grid-template-columns: 1fr;
-        // grid-template-rows: 0.1fr 1fr;
-        // grid-template-areas:
-        //     "side-bar"
-        //     "app";
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
         grid-template-areas: "app";
@@ -24,6 +19,42 @@
         .side-bar {
             display: none;
         }
+
+        .station-details {
+            .station-controller {
+                flex-direction: row-reverse;
+                justify-content: space-between;
+            }
+            .station-showcase {
+                padding: 10px;
+                .station-header {
+                    flex-direction: column;
+                    position: relative;
+                    text-align: left;
+                    .mobile-back-btn {
+                        display: block;
+                    }
+                    .img {
+                        .station-img {
+                            box-shadow: -1px -1px 52px -2px rgba(0, 0, 0, 0.75);
+                            margin-left: auto;
+                            margin-right: auto;
+                            margin-top: 20px;
+                            max-width: 70%;
+                            height: 35vh;
+                            border-radius: 9px;
+                        }
+                    }
+                    .info {
+                        width: 100%;
+                        h1 {
+                            font-size: 30px;
+                        }
+                    }
+                }
+            }
+        }
+
         .music-player {
             position: relative;
             bottom: 55px !important;
@@ -31,49 +62,11 @@
         .song-card {
             display: flex !important;
             display: none !important;
-            // flex-direction: column !important;
-        }
-        .category-list{
-            justify-content: center;
-
-        }
-        .station-controller{
-            flex-direction: row-reverse;
-            justify-content: space-between;
-        }
-        .station-showcase {
-            padding: 10px;
-            .station-header {
-                flex-direction: column;
-                position: relative;
-                text-align: left;
-                .mobile-back-btn{
-                    display: block;
-                }
-                .img {
-
-                    .station-img {
-                        box-shadow: -1px -1px 52px -2px rgba(0,0,0,0.75);
-                        margin-left: auto;
-                        margin-right: auto;
-                        margin-top: 20px;
-                        max-width: 70%;
-                        height: 35vh;
-                        border-radius: 9px;
-                    }
-                }
-                .info {
-                    width: 100%;
-                    h1 {
-                        font-size: 30px;
-                    }
-                }
-            }
         }
         .mobile-input {
             display: block;
         }
-        .mobile-input-title{
+        .mobile-input-title {
             display: block;
         }
         .collection {
@@ -95,4 +88,3 @@
         display: none;
     }
 }
-

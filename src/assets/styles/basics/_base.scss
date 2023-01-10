@@ -21,3 +21,12 @@ h6 {
     line-height: 1;
 }
 
+.MuiTextField-root{
+    & .MuiOutlinedInput-root {
+    &.Mui-focused{
+        fieldset {
+            border-color: $clr1;
+        }
+    } 
+}
+}	

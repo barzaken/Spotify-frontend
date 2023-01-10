@@ -112,6 +112,7 @@ export const StationDetails = () => {
 
     async function saveStation(){
       await dispatch(updateStation(currStation))
+      setOpen(false)      
       dispatch(alert(`Playlist ${currStation.name} saved `))
 
     }
@@ -142,11 +143,11 @@ export const StationDetails = () => {
         </div>
         <div className="station-controller">
           {playlist.station?._id === id && playlist.isPlaying ? 
-          <PauseCircleFilledIcon onClick={() => togglePlaylist()} className="play-btn" color="success" sx={{ fontSize:66 }} /> 
-          :<PlayCircleFilledWhiteIcon onClick={() => togglePlaylist()} className="play-btn" color="success" sx={{ fontSize: 66 }} /> 
+          <PauseCircleFilledIcon onClick={() => togglePlaylist()} className="play-btn" /> 
+          :<PlayCircleFilledWhiteIcon onClick={() => togglePlaylist()} className="play-btn" /> 
           }
           <FavoriteBorderIcon sx={{color:'#b3b3b3', fontSize: 40 }} />
-          <>
+          {isEdit && <>
        <MoreHorizIcon    
         aria-controls={openMenu ? 'basic-menu' : undefined}
         aria-haspopup="true"
@@ -160,9 +161,9 @@ export const StationDetails = () => {
       >
         <MenuItem onClick={() => deleteStation()}>Delete Playlist</MenuItem>
       </Menu>
-    </>
-          {isEdit && <TextField type="search" id="outlined-basic" onChange={(event) => setTerm(event.target.value)} 
-          color="success" label="Search for music" variant="outlined" />}
+    </>}
+          {isEdit && <TextField type="search" onChange={(event) => setTerm(event.target.value)} 
+           label="Search for music" className="station-input" color="success" variant="outlined" />}
         </div>
       </div>
       <div className="songs">
