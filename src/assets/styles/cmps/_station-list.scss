@@ -29,5 +29,7 @@
     h5 {
         font-size: 16px;
         margin: 0;
+        font-weight: 700;
+        font-family: var(--font-family, CircularSp, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, var(--fallback-fonts, sans-serif));
     }
 }

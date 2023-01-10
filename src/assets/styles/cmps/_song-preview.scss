@@ -1,8 +1,25 @@
 .songs-table {
+    button{
+        color: white;
+        background-color: transparent;
+        border-radius: 500px;
+        padding-block: 3px;
+        padding-inline: 15px;
+        border: 1px solid var(--essential-subdued,#878787);
+        min-block-size: 32px;
+        cursor: pointer;
+        transition: 0.25s;
+        &:hover{
+            scale: 1.05;
+        }
+    }
     .song-info {
         display: flex;
         align-items: right;
         gap: 15px;
+        small{
+            font-weight: 400;
+        }
         .info {
             display: flex;
             flex-direction: column;

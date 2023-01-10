@@ -12,7 +12,7 @@ export const SongPreview = ({station,song,idx,isEdit,toggleSong,playSong}) => {
     return(
         <>
     <TableRow  className="songs-table">
-    <TableCell sx={{maxWidth:30}} align="center">{isPlaying ? <MusicNoteIcon sx={{width:25}} color="success" /> : idx}</TableCell>
+    <TableCell sx={{maxWidth:30}} align="center">{isPlaying ? <MusicNoteIcon sx={{maxWidth:20}} color="success" /> : idx}</TableCell>
     <TableCell  onClick={() => playSong(song)} component="th" scope="row">
         <div className="song-info">
             <div className="img">
@@ -27,9 +27,9 @@ export const SongPreview = ({station,song,idx,isEdit,toggleSong,playSong}) => {
             </div>
         </div>
     </TableCell>
-    {isEdit && <TableCell>  <Button onClick={() => toggleSong(song)} variant="contained" color= {station?.songs?.find(s => s.songId === song.songId) ? 'error' : 'success'} size="small">
+    {isEdit && <TableCell>  <button onClick={() => toggleSong(song)} className= {station?.songs?.find(s => s.songId === song.songId) ? 'remove' : 'add'} >
     {station?.songs?.find(s => s.songId === song.songId) ? 'Remove' : 'Add'}
-        </Button> </TableCell>}
+        </button> </TableCell>}
   </TableRow>
         </>
     )

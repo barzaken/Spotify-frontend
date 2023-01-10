@@ -53,8 +53,13 @@ export const AppHeader = () => {
       <h1 >Spotify</h1>
       </div>
             <div className="actions">
-                <button onClick={() => navigate(-1)}> {'<'} </button>
-                <button onClick={() => navigate(1)}> {'>'} </button>
+              <div className="btn-container">
+              <button onClick={() => navigate(-1)}> {'<'} </button>  
+              </div>
+              <div className="btn-container">
+              <button onClick={() => navigate(1)}> {'>'} </button>
+              </div>
+
                 {location.pathname === '/search' && <input onChange={(event) => setTerm(event.target.value)} type="text" placeholder="Search for music"></input>}
             </div>
             <div className="user-section">

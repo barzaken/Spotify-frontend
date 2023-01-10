@@ -51,7 +51,7 @@ export const LoginSignup = () => {
                 {isLogin && <button onClick={() => loginDemo()} className="login-btn">Start Demo</button>}
                 {isLogin && <button onClick={() =>navigate('/login/signup')} className="login-btn">Not a user? Sign up</button>}
                 <button onClick={() => loginSignup()} className="login-btn">{isLogin ? 'Login' : 'Signup'}</button>
-                {!isLogin && <button onClick={() =>navigate('/login')} className="login-btn">Have User? Log in</button>}
+                {!isLogin && <button onClick={() =>navigate('/login')} className="login-btn">Have a User? Log in</button>}
             </div>
         </section>
     )

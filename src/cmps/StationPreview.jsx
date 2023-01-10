@@ -18,7 +18,7 @@ export const StationPreview = ({station}) => {
           <CardMedia
             component="img"
             image={station.songs[0]?.song_cover || EmptyCover}
-            alt="green iguana"
+            alt=""
             className='card-image'
           />
           <CardContent className='card-text'>

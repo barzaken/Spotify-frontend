@@ -49,7 +49,7 @@ async function createStation(){
       <div className="logo" onClick={() => navigate('/')}>
       <button onClick={() => toggleSide()} className="hamburger">☰</button>
       <img className='logo-img' src={Logo} alt="" />
-      <h1 >Spotify</h1>
+      <h1 >Musicfy</h1>
       </div>
       <Box className='nav-box' sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         <nav aria-label="main mailbox folders">
