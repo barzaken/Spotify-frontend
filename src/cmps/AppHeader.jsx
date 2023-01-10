@@ -14,11 +14,12 @@ export const AppHeader = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const user = useSelector((state) => state.userModule.user)
+  const avgColor = useSelector((state) => state.stationModule.currStation?.avgColor?.rgba)
+  const location = useLocation()
+  const currColor = (location.pathname.length > 10) ? avgColor : ""
   const [term, setTerm] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
-  const location = useLocation()
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -47,7 +48,7 @@ export const AppHeader = () => {
           }
           
       return (
-        <section className="app-header main-layout">
+        <section className="app-header main-layout" style={{background:currColor}}>
     <div onClick={() => navigate('/')} className="mobile-logo">
       <img className='logo-img' src={Logo} alt="" />
       <h1 >Spotify</h1>

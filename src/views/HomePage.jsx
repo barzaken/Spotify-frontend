@@ -7,6 +7,9 @@ export const HomePage = () => {
     dispatch(loadStations())
     return (
         <section className="home-page main-layout">
+            <div className="div">
+                <h1>Welcome User</h1>
+            </div>
             <CategoryList />
         </section>
     )

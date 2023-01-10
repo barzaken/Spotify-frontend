@@ -43,6 +43,7 @@ export function getStationById(stationId) {
         try {
             const station = await stationService.getById(stationId)
             await dispatch({ type: 'SET_STATION', currStation: station })
+            console.log('set station',station);
             return station
         } catch (err) {
             console.log('err:', err)
@@ -94,6 +95,29 @@ export function setStation(station) {
         }
     }
 }
+export function toggleSongFromStation(station,song) {
+    return async (dispatch) => {
+        const songIdx = station.songs.findIndex(s => s.songId === song.songId)
+        var action = ''
+        if(songIdx === -1){
+            station.songs.unshift(song)
+            action = 'added'
+        }else {
+          station.songs.splice(songIdx,1)
+          action = 'removed'
+        }
+        try {
+            const updatedStation = await stationService.save(station)
+            console.log(updatedStation)
+            dispatch({ type: 'UPDATE_STATION', updatedStation })
+            dispatch({ type: 'SET_MSG', msg:`${song.song_title} ${action} ` })
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}
+
+
 export function setPlaylist(station) {
     return (dispatch) => {
         try {

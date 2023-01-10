@@ -3,9 +3,8 @@ import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams,useNavigate } from 'react-router-dom';
-import { loadStations, getStationById, setSearchTerm,setSong,setPlaylist,toggleIsPlaying,updateStation,removeStation,alert } from "../store/actions/station.actions"
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { loadStations, getStationById, setSearchTerm,setSong,setPlaylist,toggleIsPlaying,updateStation,removeStation,alert,toggleSongFromStation } from "../store/actions/station.actions"
+import { useEffect,useState } from 'react';
 import EmptyCover from '../assets/imgs/emptyCover.png';
 import { SongList } from '../cmps/SongList';
 import { TextField } from '@mui/material';
@@ -16,7 +15,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
-import {FastAverageColor} from "fast-average-color";
+import Divider from '@mui/material/Divider';
 
 
 export const StationDetails = () => {
@@ -25,14 +24,14 @@ export const StationDetails = () => {
   const { id } = useParams()
   const playlist =  useSelector((state) => state.stationModule.playlist)
   const queryItems = useSelector((state) => state.stationModule.query)
-  let currStation = useSelector((state) => state.stationModule.stations.find(station => station._id === id))
+  let currStation = useSelector((state) => state.stationModule.currStation)
   const [term, setTerm] = useState("");
   const [open, setOpen] = useState(false);
-  const fac = new FastAverageColor();
   const user = useSelector((state) => state.userModule.user)
   const isEdit = user?._id === currStation?.createdBy?._id
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -50,25 +49,7 @@ export const StationDetails = () => {
         await dispatch(getStationById(id))
     }
     getStation()
-  }, [id]);
-
-//   useEffect(() => {
-//       getColor(currStation?.songs[0]?.song_cover)
-//   }, [currStation]);
-
-
-  
-
-//   function getColor(url) {
-//     if(!url) return  'rgb(83, 83, 83)'
-//     const img = new Image();
-//     img.crossOrigin = 'anonymous';
-// img.src = url
-// const fac = new FastAverageColor();
-// const color = fac.getColor(img);
-// console.log(color)
-//   }
-
+  }, []);
 
   useEffect(() => {
       const search = setTimeout(() => {
@@ -81,20 +62,11 @@ export const StationDetails = () => {
     function handleChange ({ target }) {
       const field = target.name
       let value = target.value
-      console.log(field,value);
       currStation = {...currStation,[field]:value}
     }
 
     async function toggleSong(song){
-      const songIdx = currStation.songs.findIndex(s => s.songId === song.songId)
-      if(songIdx === -1){
-          currStation.songs.unshift(song)
-          dispatch(alert(`${song.song_title} Added `))
-      }else {
-        currStation.songs.splice(songIdx,1)
-        dispatch(alert(`${song.song_title} Removed `))
-      }
-      dispatch(updateStation(currStation))
+      dispatch(toggleSongFromStation(currStation,song))
     }
 
     async function playSong(song){
@@ -125,11 +97,10 @@ export const StationDetails = () => {
 
 
 
-    
   if(!currStation) return (<h1>Loading..</h1>)
   return (
     <section className="station-details main-layout">
-      <div className="station-showcase">
+      <div className="station-showcase" style={{background:`linear-gradient(180deg, ${currStation?.avgColor?.rgba}, rgba(18, 18, 18, 1) 96%)`}}>
         <div className="station-header">
       <ArrowBackIosRoundedIcon onClick={() => navigate('/')} className="mobile-back-btn" />
           <div className="img">
@@ -141,6 +112,7 @@ export const StationDetails = () => {
             {currStation.tags?.map(tag => <small key={tag}>{tag},</small>)}
           </div>
         </div>
+        <Divider />
         <div className="station-controller">
           {playlist.station?._id === id && playlist.isPlaying ? 
           <PauseCircleFilledIcon onClick={() => togglePlaylist()} className="play-btn" /> 

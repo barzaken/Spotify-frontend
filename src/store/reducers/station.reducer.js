@@ -42,7 +42,7 @@ export function stationReducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 stations: state.stations.map(station => station._id === action.updatedStation._id ? action.updatedStation : station),
-                // currStation:action.updatedStation
+                currStation:action.updatedStation
             }
         case 'SET_FILTER_BY':
             return {
