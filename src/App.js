@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Route, Routes, Switch } from 'react-router-dom'
+import { HashRouter as Router, Route, Routes } from 'react-router-dom'
 import { AppHeader } from './cmps/AppHeader';
 import { SideBar } from './cmps/SideBar';
 import { CategoryPage } from './views/CategoryPage';
@@ -15,7 +15,6 @@ function App() {
     <Router>
       <AppHeader />
       <SideBar />
-      {/* <div className='placeholder'></div> */}
       <Routes>
         <Route path="/playlist/:id" element={<StationDetails />} />
         <Route path="/playlist" element={<StationDetails />} />

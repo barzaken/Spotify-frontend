@@ -13,8 +13,6 @@ export const CategoryPage = () => {
         return '#' + Math.floor(Math.random() * 16777215).toString(16);
     }
 
-    // const songs = 
-
     const [term, setTerm] = useState("");
     useEffect(() => {
         const search = setTimeout(() => {

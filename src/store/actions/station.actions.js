@@ -83,7 +83,6 @@ export function setSearchTerm(term) {
     }
 }
 export function setStation(station) {
-    // console.log('station');
     return (dispatch) => {
         try {
             dispatch({ type: 'SET_STATION', currStation: { ...station } })
@@ -93,36 +92,27 @@ export function setStation(station) {
     }
 }
 export function setPlaylist(station) {
-    // console.log('station');
     return (dispatch) => {
         try {
             dispatch({ type: 'SET_PLAYLIST', station: { ...station } })
-            // console.log(station.songs[0]);
-            // setSong(station.songs[0])
         } catch (err) {
             console.log('err:', err)
         }
     }
 }
 export function setPlaylistIdx(idx) {
-    // console.log('station');
     return (dispatch) => {
         try {
             dispatch({ type: 'SET_PLAYLIST_IDX', idx: idx })
-            // console.log(station.songs[0]);
-            // setSong(station.songs[0])
         } catch (err) {
             console.log('err:', err)
         }
     }
 }
 export function toggleIsPlaying(mode) {
-    // console.log('station');
     return (dispatch) => {
         try {
             dispatch({ type: 'TOGGLE_PLAYLIST', isPlaying: mode })
-            // console.log(station.songs[0]);
-            // setSong(station.songs[0])
         } catch (err) {
             console.log('err:', err)
         }

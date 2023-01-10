@@ -1,6 +1,6 @@
 import { useSelector,useDispatch } from 'react-redux';
 import { ReactSimplifiedPlayer } from 'react-simplified-player';
-import { setSong,setPlaylistIdx,toggleIsPlaying } from '../store/actions/station.actions';
+import { setSong,setPlaylistIdx } from '../store/actions/station.actions';
 
 export const MusicPlayer = () => {
     const dispatch = useDispatch()

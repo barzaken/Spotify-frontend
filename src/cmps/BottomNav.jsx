@@ -1,13 +1,9 @@
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
-import RestoreIcon from '@mui/icons-material/Restore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { useState } from "react";
 import HomeIcon from '@mui/icons-material/Home';
-import Divider from '@mui/material/Divider';
-import AddBoxIcon from '@mui/icons-material/AddBox';
 import SearchIcon from '@mui/icons-material/Search';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useNavigate } from "react-router-dom";
 
 export const BottomNav = () => {

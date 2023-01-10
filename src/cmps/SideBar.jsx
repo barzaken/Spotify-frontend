@@ -26,7 +26,6 @@ export const SideBar = () => {
 const navigate = useNavigate()
 const dispatch = useDispatch()
 const [isOpen,setIsOpen] = useState(false)
-const [isAdding,setIsAdding] = useState(false)
 const toggleSide = () => {
   setIsOpen((last => !last))
 }
@@ -44,9 +43,7 @@ async function createStation(){
   navigate(`/playlist/${station._id}`)
 }
 
-const toggleIsAdding = () => {
-  setIsAdding((last => !last))
-}
+
   return (
     <div className={`side-bar ${isOpen ? 'open' : ''}`}  >
       <div className="logo" onClick={() => navigate('/')}>
@@ -92,16 +89,6 @@ const toggleIsAdding = () => {
                 <ListItemText primary="Create Playlist" />
               </ListItemButton>
             </ListItem>
-           {(isAdding) && <ListItem disablePadding>
-              <ListItemButton onClick={() =>{
-                
-              } }>
-                <ListItemIcon>
-                  <AddBoxIcon />
-                </ListItemIcon>
-                <ListItemText contenteditable primary="Create Playlist" />
-              </ListItemButton>
-            </ListItem>}
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>

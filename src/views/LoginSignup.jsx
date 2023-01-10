@@ -32,7 +32,7 @@ export const LoginSignup = () => {
         <section className="login-signup">
             <div className="form">
                 <div className="logo">
-                <img src={Logo} />
+                <img src={Logo} alt="" />
                 <h1>{isLogin ? 'Login' : 'Signup'}</h1>
                 </div>
                {!isLogin && <input onChange={(ev) => handleChange(ev)} name="fullname" placeholder="Name" className="login-input"/>}

@@ -5,42 +5,47 @@ import { setSearchTerm } from "../store/actions/station.actions"
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import {onLogout } from "../store/actions/user.actions.js"
 import {alert } from "../store/actions/station.actions.js"
-
 import Logo from '../assets/imgs/spotifylogo.png';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-export const AppHeader = () => {
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const user = useSelector((state) => state.userModule.user)
-    const [term, setTerm] = useState("");
 
+
+export const AppHeader = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.userModule.user)
+  const [term, setTerm] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
+  const location = useLocation()
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    // setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
-    useEffect(() => {
-        const search = setTimeout(() => {
-            if(!term) return
-            dispatch(setSearchTerm(term))
-        }, 2000)
-        return () => clearTimeout(search)
-      }, [term])
-      const location = useLocation()
 
-      function doLogout() {
-          dispatch(onLogout())
-          dispatch(alert('Logged Out'))
+  useEffect(() => {
+      const search = setTimeout(() => {
+          if(!term) return
+          dispatch(setSearchTerm(term))
+        }, 2000)
+      return () => clearTimeout(search)
+      }, [term])
+   
+
+  function doLogout() {
+      dispatch(onLogout())
+      dispatch(alert('Logged Out'))
       }
-      function userProfile() {
-          handleClose()
-          navigate('/user')
-      }
+
+  function userProfile() {
+      handleClose()
+      navigate('/user')
+          }
+          
       return (
         <section className="app-header main-layout">
     <div onClick={() => navigate('/')} className="mobile-logo">

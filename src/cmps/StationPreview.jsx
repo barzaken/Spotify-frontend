@@ -3,13 +3,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import { useDispatch } from 'react-redux';
-import { setStation } from '../store/actions/station.actions';
 import { useNavigate } from 'react-router-dom';
 import EmptyCover from '../assets/imgs/emptyCover.png';
 
 export const StationPreview = ({station}) => {
-    const dispatch = useDispatch()
     const navigate = useNavigate()
     const openStation = (station) => {
         navigate(`/playlist/${station._id}`)
