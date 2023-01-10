@@ -107,7 +107,7 @@ async function createStation(){
             <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           {myPlaylists.map(playlist => 
-          <ListItemButton onClick={() => navigate(`playlist/${playlist._id}`)}>
+          <ListItemButton key={playlist._id} onClick={() => navigate(`playlist/${playlist._id}`)}>
           <ListItemAvatar>
                 <Avatar
                   alt={''}

@@ -19,7 +19,6 @@ export const BottomNav = () => {
                 navigate('/search')
                 break;
                 case 2:
-                navigate('/playlist/edit')
                 break;
             case 3:
                 navigate('/user')

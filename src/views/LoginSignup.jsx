@@ -21,6 +21,10 @@ export const LoginSignup = () => {
       }
 
       async function loginSignup(){
+        if(!userCred.username.trim().length || !userCred.password.trim().length){
+          dispatch(alert("Please fill all the fields"))
+          return
+        }
         isLogin ? await dispatch(onLogin(userCred)) : await dispatch(onSignup(userCred))
         let msg = isLogin ? 'Logged in' : 'Signed up'
         dispatch(alert(msg))
@@ -45,7 +49,9 @@ export const LoginSignup = () => {
                 <input onChange={(ev) => handleChange(ev)} name="username" placeholder="Username" className="login-input"/>
                 <input onChange={(ev) => handleChange(ev)} name="password" placeholder="Password" type="password" className="login-input"/>
                 {isLogin && <button onClick={() => loginDemo()} className="login-btn">Start Demo</button>}
+                {isLogin && <button onClick={() =>navigate('/login/signup')} className="login-btn">Not a user? Sign up</button>}
                 <button onClick={() => loginSignup()} className="login-btn">{isLogin ? 'Login' : 'Signup'}</button>
+                {!isLogin && <button onClick={() =>navigate('/login')} className="login-btn">Have User? Log in</button>}
             </div>
         </section>
     )
