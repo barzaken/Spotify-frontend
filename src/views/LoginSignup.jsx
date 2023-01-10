@@ -18,7 +18,6 @@ export const LoginSignup = () => {
         const field = target.name
         let value = target.value
         setUserCred(prev => ({...prev,[field]:value}))
-        console.log(userCred)
       }
 
       async function loginSignup(){
@@ -27,6 +26,13 @@ export const LoginSignup = () => {
         dispatch(alert(msg))
         navigate('/')   
       }
+      async function loginDemo(){
+        await dispatch(onLogin({username:'Guest',password:1}))
+        let msg = isLogin ? 'Logged in' : 'Signed up'
+        dispatch(alert(msg))
+        navigate('/')   
+      }
+
 
     return (
         <section className="login-signup">
@@ -38,6 +44,7 @@ export const LoginSignup = () => {
                {!isLogin && <input onChange={(ev) => handleChange(ev)} name="fullname" placeholder="Name" className="login-input"/>}
                 <input onChange={(ev) => handleChange(ev)} name="username" placeholder="Username" className="login-input"/>
                 <input onChange={(ev) => handleChange(ev)} name="password" placeholder="Password" type="password" className="login-input"/>
+                {isLogin && <button onClick={() => loginDemo()} className="login-btn">Start Demo</button>}
                 <button onClick={() => loginSignup()} className="login-btn">{isLogin ? 'Login' : 'Signup'}</button>
             </div>
         </section>
