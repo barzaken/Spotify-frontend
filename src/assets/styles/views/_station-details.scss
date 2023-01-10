@@ -1,0 +1,127 @@
+.station-details {
+    max-height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    // margin-bottom: 50px;
+    margin-bottom: 80px !important;
+
+    .station-showcase {
+        display: flex;
+        flex-direction: column;
+        padding: 22px;
+        gap: 25px;
+        // background: rgb(83, 83, 83);
+        background: linear-gradient(180deg, rgba(83, 83, 83, 1) 0%, rgba(18, 18, 18, 1) 84%);
+        // background: linear-gradient(180deg, rgb(201, 30, 30) 0%, rgba(18, 18, 18, 1) 84%);
+        h1{
+            cursor: pointer;
+            width: max-content;
+        }
+    }
+    .station-header {
+        color: white;
+        flex-basis: 100%;
+        display: flex;
+        gap: 20px;
+        .mobile-back-btn{
+            position: absolute;
+            top: 24px;
+            left: 10px;
+            display: none;
+        }
+        .img {
+            .station-img {
+                max-width: 234px;
+                height: 234px;
+                display: block;
+            }
+        }
+        .info {
+            align-self: flex-end;
+            flex-grow: 1;
+            h1 {
+                font-size: 96px;
+                margin: 0 0 0.1em;
+            }
+        }
+    }
+    .station-controller {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        .station-option-menu{
+            color: #b3b3b3;
+        }
+    }
+    .songs {
+        flex-grow: 1;
+        overflow-y: scroll;
+    }
+    .play-btn{
+        transition: 0.25s;
+        &:hover{
+            scale: 1.1;
+        }
+    }
+}
+
+.modal {
+    outline: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 95%;
+    width: 530px;
+    height: 390px;
+    background-color: #282828;
+    color: white;
+    border-radius: 10px ;
+    box-shadow: 24px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .modal-header{
+        display: flex;
+        justify-content: space-between;
+        h1{
+            font-size: 24px;
+            margin: 0;
+        }
+        button{
+            background-color: transparent;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+        }
+    }
+    .edit-modal {
+        display: flex;
+        gap: 20px;
+        img {
+            width: 180px;
+            height: 180px;
+        }
+        // max-width: 100%;
+        .edit-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+    }
+    .save-btn{
+        align-self: flex-end;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 500px;
+        min-block-size: 48px;
+        padding: 8px 32px;
+    }
+}
+

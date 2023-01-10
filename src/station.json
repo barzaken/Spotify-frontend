@@ -1,0 +1,26 @@
+{
+    "_id": "5cksxjas89xjsa8xjsa8jxs09",
+    "name": "Funky Monks",
+    "tags": [
+        "Funk",
+        "Happy"
+    ],
+    "createdBy": {
+        "_id": "u101",
+        "fullname": "Puki Ben David",
+        "imgUrl": "http://some-photo/"
+    },
+    "likedByUsers": [
+    ],
+    "songs": [
+        {
+            "songId": "ZOf7aMbzQAM",
+            "song_title": "נועה קירל - פנתרה (Prod. By Jordi)",
+            "song_cover": "https://i.ytimg.com/vi/ZOf7aMbzQAM/mqdefault.jpg",
+            "publishedAt": "2022-08-12T07:00:08Z",
+            "song_artist": "Noa Kirel"
+        }
+    ],
+    "msgs": [
+    ]
+}

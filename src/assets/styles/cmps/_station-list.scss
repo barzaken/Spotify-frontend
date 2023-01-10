@@ -1,0 +1,33 @@
+.station-list {
+    display: flex;
+    width: max-content;
+    gap: 20px;
+    overflow: scroll;
+}
+
+
+
+.card-preview{
+    display: flex !important;
+    flex-direction: column;
+    min-height: 100%;
+}
+.card-image {
+    flex-grow: 1;
+    padding: 8px;
+    border-radius: 15px;
+    object-fit: cover !important;
+}
+
+.card-text {
+    align-self: flex-start;
+    padding: 8px !important ;
+    h6 {
+        margin: 0;
+        font-size: 14px;
+    }
+    h5 {
+        font-size: 16px;
+        margin: 0;
+    }
+}

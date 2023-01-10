@@ -1,0 +1,102 @@
+.app-header{
+    padding: 20px !important;
+    display: flex;
+    width: 100%;
+    grid-area: header;
+    color: white;
+    .mobile-logo{
+        display: none;
+    }
+    .actions{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-grow: 1;
+        input{
+            border: 0;
+            display: block;
+            border-radius: 500px;
+            height: 40px;
+            display: inline-block;
+            padding: 6px 48px;
+            text-overflow: ellipsis;
+            flex-basis: 25%;
+            &:focus{
+                outline: none;
+            }
+        }
+        button{
+            color: white;
+            background-color: transparent;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            transition: 0.25s;
+            &:hover{
+                scale: 1.1;
+            }
+        }
+    }
+    .user-section{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .user-info{
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #282828;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            h3{
+                margin: 0;
+            }
+            img{
+                width: 30px;
+            }
+        }
+        .login-btn,.signup-btn{            
+            cursor: pointer;
+            color: white;
+            font-size: 30px;
+            background-color: transparent;
+            border: none;
+    border-radius: 500px;
+    font-size: inherit;
+    min-block-size: 48px;
+    padding-inline: 32px;
+    transition: 0.25s;
+    &:hover{
+        scale: 1.1;
+    }
+        }
+        .login-btn{
+            background-color: white;
+            color: black;
+        }
+    }
+}
+
+
+@media screen and (max-width:640px) {
+
+    .app-header{
+        display: none;
+        .mobile-logo{
+            display: block;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            h1{
+                margin: 0;
+            }
+            .logo-img{
+                width: 24px;
+            }
+        }
+        .actions{
+            display: none;
+        }
+    }
+}

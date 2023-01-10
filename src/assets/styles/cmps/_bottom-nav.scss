@@ -1,0 +1,10 @@
+.bottom-nav{
+    display: none;
+    color: green;
+    .MuiBottomNavigationAction-root{
+        color: white;
+    }
+    .MuiBottomNavigationAction-root.Mui-selected{
+        color: #03D95F;
+    }
+}

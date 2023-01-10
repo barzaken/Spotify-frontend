@@ -1,0 +1,48 @@
+.login-signup {
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    grid-area: app;
+    .form {
+        min-width: 230px;
+        img{
+            width: 80px;
+            margin-bottom: 10px;
+        }
+        .logo{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        gap: 10px;
+        padding: 20px;
+        color: white;
+        .login-input {
+            padding: 10px 16px;
+            border-radius: 4px;
+            border: 0;
+            width: 100%;
+            // min-width: 200px;
+            &:focus {
+                outline: none;
+            }
+        }
+        .login-btn {
+            padding: 10px 16px;
+            border-radius: 4px;
+            border: 0;
+            // min-width: 200px;
+            background-color: greenyellow;
+            // flex: 1;
+            width: 100%;
+        }
+    }
+}
