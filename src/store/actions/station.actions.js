@@ -46,7 +46,7 @@ export function getStationById(stationId) {
             socketService.emit('SET_STATION',stationId)
             socketService.on('UPDATED_STATION',async (id) => {
                 let updatedStation = await stationService.getById(id)
-                dispatch({ type: 'SET_STATION', currStation: updatedStation })
+                dispatch({ type: 'UPDATE_STATION',updatedStation })
             })
             const station = await stationService.getById(stationId)
             console.log('here',station);
