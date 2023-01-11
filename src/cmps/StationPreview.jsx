@@ -26,7 +26,7 @@ export const StationPreview = ({station}) => {
             {station?.name}
             </Typography>
             <Typography variant="body2" color="text.secondary" component="h6">
-              {station?.tags}
+              {station?.songs[0].song_artist}
             </Typography>
           </CardContent>
         </CardActionArea>

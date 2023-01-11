@@ -5,12 +5,10 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 
 export const SongList = ({station,songs,isEdit,toggleSong,playSong}) => {return ( 
-    <Paper>
     <TableContainer >
-      <Table stickyHeader aria-label="simple table">
+      <Table className="main-table" aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell align="center">#</TableCell>
@@ -25,7 +23,6 @@ export const SongList = ({station,songs,isEdit,toggleSong,playSong}) => {return 
         </TableBody>
       </Table>
     </TableContainer>
-  </Paper>
 )
 
 }

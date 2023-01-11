@@ -1,7 +1,8 @@
 import { StationList } from "./StationList"
-
+import {HomepageLegend} from "./HomepageLegend"
 export const CategoryList = () => {
-    return (
+    return (<>
+            <HomepageLegend/>
         <div className="category-list">
             <div className="category-container">
                 <h1>New</h1>
@@ -22,5 +23,6 @@ export const CategoryList = () => {
             </div>
             </div>
         </div>
+        </>
     )
 }

@@ -134,8 +134,8 @@ export const StationDetails = () => {
         <MenuItem onClick={() => deleteStation()}>Delete Playlist</MenuItem>
       </Menu>
     </>}
-          {isEdit && <TextField type="search" onChange={(event) => setTerm(event.target.value)} 
-           label="Search for music" className="station-input" color="success" variant="outlined" />}
+          {isEdit && <input type="search" onChange={(event) => setTerm(event.target.value)} 
+           placeholder="Search for music" className="station-input" />}
         </div>
       </div>
       <div className="songs">

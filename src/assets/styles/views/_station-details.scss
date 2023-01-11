@@ -50,6 +50,19 @@
         .station-option-menu{
             color: #b3b3b3;
         }
+        .station-input{
+            background-color: hsla(0,0%,100%,.1);
+            border: 0;
+            border-radius: 4px;
+            color: hsla(0,0%,100%,.7);
+            height: 40px;
+            padding: 8px 32px;
+            width: 100%;
+            max-width: 360px;
+            &:focus{
+                outline: none;
+            }
+        }
     }
     .songs {
         flex-grow: 1;

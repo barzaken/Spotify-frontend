@@ -1,0 +1,50 @@
+.legend{
+    min-height: 250px;
+    padding: 20px;
+    color: white;
+    h1{
+        font-size: 32px;
+    }
+    .previews{
+        display: flex;
+        gap: 40px;
+        .preview{
+            // max-height: 60px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: hsla(0,0%,100%,.1);
+            border-radius: 4px;
+            transition: background-color .3s ease;
+            .play-btn{
+                color: $clr1;
+                font-size: 56px;
+                opacity: 0;
+                margin-right: 10px;
+                cursor: pointer;
+                transition: opacity 0.3s,ease-in;
+                &:hover{
+                    scale: 1.1;
+                }
+            }
+            p{
+                padding: 5px;
+                cursor: pointer;
+                text-decoration: underline;
+                flex: 1;
+            }
+            &:hover{
+                .play-btn{
+                    transition: 0.5s;
+                    opacity: 1;
+                }
+                background: hsla(0,0%,100%,.2);
+            }
+            }
+            img{
+                width: 80px;
+                height: 80px;
+            }
+        }
+    }

@@ -16,7 +16,7 @@ export const AppHeader = () => {
   const user = useSelector((state) => state.userModule.user)
   const avgColor = useSelector((state) => state.stationModule.currStation?.avgColor?.rgba)
   const location = useLocation()
-  const currColor = (location.pathname.length > 10) ? avgColor : ""
+  const currColor = (location.pathname.length > 10) ? avgColor : avgColor
   const [term, setTerm] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
@@ -67,13 +67,13 @@ export const AppHeader = () => {
                 {user?.fullname ? 
                           <>
                           <div className="user-info">
+                             <img src={user.imgUrl} alt=""/>
+                             <h3>{user.fullname}</h3>
                           <MoreHorizIcon    
                            aria-controls={openMenu ? 'basic-menu' : undefined}
                            aria-haspopup="true"
                            aria-expanded={openMenu ? 'true' : undefined}
                            onClick={handleClick}/>
-                             <img src={user.imgUrl} alt=""/>
-                             <h3>{user.fullname}</h3>
                           </div>
                          <Menu
                            anchorEl={anchorEl}
