@@ -1,17 +1,52 @@
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import { useSelector } from 'react-redux';
-import Button from '@mui/material/Button';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
-
-export const SongPreview = ({station,song,idx,isEdit,toggleSong,playSong}) => {
+import { useDrag, useDrop } from 'react-dnd'
+export const SongPreview = ({station,song,idx,isEdit,toggleSong,playSong,findSong,moveSong,updateStationSongs}) => {
     const currSong = useSelector((state) => state.stationModule.currSong)
     const isPlaying = currSong?.songId === song.songId
+    const songType = {
+        song:'song'
+      }
+    const originalIndex = findSong(song._id).index
+
+    const [{ isDragging }, drag] = useDrag(
+      () => ({
+        type: songType.song,
+        item: { id:song._id, originalIndex },
+        collect: (monitor) => ({
+          isDragging: monitor.isDragging(),
+        }),
+        end: (item, monitor) => {
+          const { id: droppedId, originalIndex } = item
+          const didDrop = monitor.didDrop()
+          updateStationSongs()  
+          if (!didDrop) {
+            moveSong(droppedId, originalIndex)
+          }
+        },
+      }),
+      [song._id, originalIndex, moveSong],
+    )
+    const [, drop] = useDrop(
+      () => ({
+        accept: songType.song,
+        hover({ id: draggedId }) {
+          if (draggedId !== song._id) {
+            const { index: overIndex } = findSong(song._id)
+            moveSong(draggedId, overIndex)
+          }
+        },
+      }),
+      [findSong, moveSong],
+    )
+
     return(
         <>
-    <TableRow  className="songs-table">
+    <TableRow className="songs-table" ref={(node) => drag(drop(node))}>
     <TableCell sx={{maxWidth:30}} align="center">{isPlaying ? <MusicNoteIcon sx={{maxWidth:20}} color="success" /> : idx}</TableCell>
     <TableCell  onClick={() => playSong(song)} component="th" scope="row">
         <div className="song-info">

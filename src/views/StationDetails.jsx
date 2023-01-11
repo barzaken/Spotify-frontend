@@ -16,7 +16,9 @@ import MenuItem from '@mui/material/MenuItem';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
 import Divider from '@mui/material/Divider';
-
+import update from 'immutability-helper'
+import { memo, useCallback } from 'react'
+import { useDrop } from 'react-dnd'
 
 export const StationDetails = () => {
   const dispatch = useDispatch()
@@ -29,8 +31,44 @@ export const StationDetails = () => {
   const [open, setOpen] = useState(false);
   const user = useSelector((state) => state.userModule.user)
   const isEdit = user?._id === currStation?.createdBy?._id
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(currStation?.songs);
   const openMenu = Boolean(anchorEl);
+
+
+   const [songs, setSongs] = useState([])
+
+   const findSong = useCallback(
+    (id) => {
+      const song = songs.filter((s) => s?._id === id)[0]
+      return {
+        song,
+        index: songs.indexOf(song),
+      }
+    },
+    [songs],
+  )
+
+  const moveSong = useCallback(
+      async (id, atIndex) => {
+      const { song, index } = findSong(id)
+       await setSongs(
+        update(songs, {
+          $splice: [
+            [index, 1],
+            [atIndex, 0, song],
+          ],
+        }), 
+      )
+    },
+    [findSong, songs, setSongs],
+)
+
+
+  const songType = {
+    song:'song'
+  }
+  const [, drop] = useDrop(() => ({ accept: songType.song }))
+
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -39,17 +77,22 @@ export const StationDetails = () => {
     setAnchorEl(null);
   };
 
-
-
   useEffect(() => {
     async function getStation() {
         if(!currStation){
           await dispatch(loadStations())
         }
         await dispatch(getStationById(id))
-    }
+      }
     getStation()
   }, []);
+
+  useEffect(() => {
+    if(currStation?.songs){
+      setSongs(currStation.songs)
+    }
+  }, [currStation]);
+
 
   useEffect(() => {
       const search = setTimeout(() => {
@@ -86,7 +129,10 @@ export const StationDetails = () => {
       await dispatch(updateStation(currStation))
       setOpen(false)      
       dispatch(alert(`Playlist ${currStation.name} saved `))
+    }
 
+    async function updateStationSongs(){
+      await dispatch(updateStation({...currStation,songs:songs}))
     }
 
     async function deleteStation(){
@@ -98,6 +144,7 @@ export const StationDetails = () => {
 
 
   if(!currStation) return (<h1>Loading..</h1>)
+
   return (
     <section className="station-details main-layout">
       <div className="station-showcase" style={{background:`linear-gradient(180deg, ${currStation?.avgColor?.rgba}, rgba(18, 18, 18, 1) 96%)`}}>
@@ -139,7 +186,7 @@ export const StationDetails = () => {
         </div>
       </div>
       <div className="songs">
-        <SongList station={currStation} toggleSong={toggleSong} playSong={playSong} isEdit={isEdit} songs={term ? queryItems : currStation?.songs} />
+        <SongList updateStationSongs={updateStationSongs} findSong={findSong} moveSong={moveSong} station={currStation} toggleSong={toggleSong} playSong={playSong} isEdit={isEdit} songs={term ? queryItems : songs} />
       </div>
       <Modal
         open={open}

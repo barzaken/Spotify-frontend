@@ -1,18 +1,19 @@
 import {useSelector,useDispatch} from 'react-redux'
-import {useState} from 'react'
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import {setStation} from "../store/actions/station.actions.js"
+
 export const HomepageLegend = () => {
+    const bgColor = useSelector((state) => state.stationModule.currStation?.avgColor?.rgba)
     const currStation = useSelector((state) => state.stationModule.currStation)
+    const stations = useSelector((state) => state.stationModule.stations)
     const dispatch = useDispatch()
-    let bgColor = currStation?.avgColor?.rgba
+    const stationsToShow = stations.slice(0,3)
+
     function changeBackground(ev) {
-        if(stations[ev.target.dataset.idx]._id === currStation._id) return
+        if(!ev.target.dataset.idx || stations[ev.target.dataset.idx]._id === currStation?._id) return
         dispatch(setStation(stations[ev.target.dataset.idx]))
     }
-    const stations = useSelector((state) => state.stationModule.stations)
-    let stationsToShow = stations.slice(0,3)
-    if(!currStation) return <div>Loading</div>
+    if(!stations) return <div>Loading</div>
     return(
         <div className="legend" style={{background:`linear-gradient(180deg, ${bgColor}, rgba(18, 18, 18, 1) 102%)`}}>
             <h1>Welcome user</h1>
