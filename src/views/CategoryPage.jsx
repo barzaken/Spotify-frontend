@@ -28,7 +28,7 @@ export const CategoryPage = () => {
     async function playSong(song) {
         dispatch(setSong(song))
     }
-    const categories = [
+    const [categories,setCategories] = useState([
         { name: 'Best Hits', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
         { name: '2023 Israel Hits', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
         { name: '2023 UK Hits', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
@@ -45,7 +45,7 @@ export const CategoryPage = () => {
         { name: 'Sports Mix', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
         { name: 'Hype Mix', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
         { name: 'Live Show Performance', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-    ]
+    ])
     return (
         <section className="category-page main-layout">
             <h1 className="mobile-input-title">Search</h1>
