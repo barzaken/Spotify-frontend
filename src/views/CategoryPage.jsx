@@ -63,7 +63,7 @@ export const CategoryPage = () => {
                     </div>
                 )}
                 </div>
-                <SongList playSong={playSong} songs={queryItems} />
+                <SongList isDragMode={false} playSong={playSong} songs={queryItems} />
             </div>
             :<div className="collection-list">
                 {categories.map((category) =>

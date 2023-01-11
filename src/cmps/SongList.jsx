@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-export const SongList = ({station,songs,isEdit,toggleSong,playSong,moveSong,findSong,updateStationSongs}) => {
+export const SongList = ({station,songs,isEdit,toggleSong,playSong,moveSong,findSong,updateStationSongs,isDragMode}) => {
 
   return ( 
     <TableContainer >
@@ -20,7 +20,7 @@ export const SongList = ({station,songs,isEdit,toggleSong,playSong,moveSong,find
         </TableHead>
         <TableBody className="table-song">
           {songs?.map((song, idx) => (
-            <SongPreview updateStationSongs={updateStationSongs} station={station} findSong={findSong} moveSong={moveSong} isEdit={isEdit} song={song} idx={idx + 1} toggleSong={toggleSong} playSong={playSong} key={idx} />
+            <SongPreview isDragMode={isDragMode} updateStationSongs={updateStationSongs} station={station} findSong={findSong} moveSong={moveSong} isEdit={isEdit} song={song} idx={idx + 1} toggleSong={toggleSong} playSong={playSong} key={idx} />
           ))}
         </TableBody>
       </Table>

@@ -5,13 +5,13 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import { useDrag, useDrop } from 'react-dnd'
-export const SongPreview = ({station,song,idx,isEdit,toggleSong,playSong,findSong,moveSong,updateStationSongs}) => {
+export const SongPreview = ({station,song,idx,isEdit,toggleSong,playSong,findSong,moveSong,updateStationSongs,isDragMode}) => {
     const currSong = useSelector((state) => state.stationModule.currSong)
     const isPlaying = currSong?.songId === song.songId
     const songType = {
         song:'song'
       }
-    const originalIndex = findSong(song._id).index
+    const originalIndex = isDragMode ? findSong(song._id).index : ''
 
     const [{ isDragging }, drag] = useDrag(
       () => ({
@@ -46,7 +46,7 @@ export const SongPreview = ({station,song,idx,isEdit,toggleSong,playSong,findSon
 
     return(
         <>
-    <TableRow className="songs-table" ref={(node) => drag(drop(node))}>
+    <TableRow className="songs-table" ref={(node) => isDragMode && drag(drop(node))}>
     <TableCell sx={{maxWidth:30}} align="center">{isPlaying ? <MusicNoteIcon sx={{maxWidth:20}} color="success" /> : idx}</TableCell>
     <TableCell  onClick={() => playSong(song)} component="th" scope="row">
         <div className="song-info">

@@ -1,4 +1,5 @@
 import { stationService } from "../../services/station.service"
+import { socketService } from "../../services/socket.service"
 
 export function loadStations() {
     return async (dispatch, getState) => {
@@ -30,6 +31,7 @@ export function updateStation(station) {
     return async (dispatch) => {
         try {
             const updatedStation = await stationService.save(station)
+            socketService.emit('UPDATE_STATION',updatedStation._id)
             dispatch({ type: 'UPDATE_STATION', updatedStation })
             return
         } catch (err) {
@@ -41,7 +43,13 @@ export function updateStation(station) {
 export function getStationById(stationId) {
     return async (dispatch) => {
         try {
+            socketService.emit('SET_STATION',stationId)
+            socketService.on('UPDATED_STATION',async (id) => {
+                let updatedStation = await stationService.getById(id)
+                dispatch({ type: 'SET_STATION', currStation: updatedStation })
+            })
             const station = await stationService.getById(stationId)
+            console.log('here',station);
             await dispatch({ type: 'SET_STATION', currStation: station })
             console.log('set station',station);
             return station
@@ -50,6 +58,8 @@ export function getStationById(stationId) {
         }
     }
 }
+
+
 export function addStation(station) {
     return async (dispatch) => {
         try {
@@ -87,6 +97,7 @@ export function setSearchTerm(term) {
     }
 }
 export function setStation(station) {
+    console.log('new station');
     return (dispatch) => {
         try {
             dispatch({ type: 'SET_STATION', currStation: { ...station } })
@@ -108,7 +119,7 @@ export function toggleSongFromStation(station,song) {
         }
         try {
             const updatedStation = await stationService.save(station)
-            console.log(updatedStation)
+            socketService.emit('UPDATE-STATION',updatedStation)
             dispatch({ type: 'UPDATE_STATION', updatedStation })
             dispatch({ type: 'SET_MSG', msg:`${song.song_title} ${action} ` })
         } catch (err) {

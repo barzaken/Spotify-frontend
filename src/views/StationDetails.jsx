@@ -186,7 +186,7 @@ export const StationDetails = () => {
         </div>
       </div>
       <div className="songs">
-        <SongList updateStationSongs={updateStationSongs} findSong={findSong} moveSong={moveSong} station={currStation} toggleSong={toggleSong} playSong={playSong} isEdit={isEdit} songs={term ? queryItems : songs} />
+        <SongList isDragMode={true} updateStationSongs={updateStationSongs} findSong={findSong} moveSong={moveSong} station={currStation} toggleSong={toggleSong} playSong={playSong} isEdit={isEdit} songs={term ? queryItems : songs} />
       </div>
       <Modal
         open={open}
