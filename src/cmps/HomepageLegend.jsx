@@ -1,16 +1,14 @@
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
 import {useState} from 'react'
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
-
+import {setStation} from "../store/actions/station.actions.js"
 export const HomepageLegend = () => {
     const currStation = useSelector((state) => state.stationModule.currStation)
-    // let bgColor = currStation?.avgColor.rgba
-    const [bgColor,setBgColor] = useState(currStation?.avgColor.rgba)
+    const dispatch = useDispatch()
+    let bgColor = currStation?.avgColor?.rgba
     function changeBackground(ev) {
-        // bgColor = stations[ev.target.dataset.idx]?.avgColor.rgba
-        // bgColor = stations[1]?.avgColor.rgba
-        setBgColor(stations[1]?.avgColor.rgba)
-        console.log(bgColor)
+        if(stations[ev.target.dataset.idx]._id === currStation._id) return
+        dispatch(setStation(stations[ev.target.dataset.idx]))
     }
     const stations = useSelector((state) => state.stationModule.stations)
     let stationsToShow = stations.slice(0,3)
