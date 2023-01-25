@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setSong } from '../store/actions/station.actions';
 import { SongList } from '../cmps/SongList';
-import { TextField } from '@mui/material';
+// import { TextField } from '@mui/material';
 import { useState,useEffect } from "react";
 
 import { setSearchTerm } from "../store/actions/station.actions"
@@ -10,7 +10,7 @@ import { setSearchTerm } from "../store/actions/station.actions"
 
 export const CategoryPage = () => {
     function randColor() {
-        return '#' + Math.floor(Math.random() * 16777215).toString(16);
+        return '#' + Math.floor(Math.random() * 4000).toString(16);
     }
 
     const [term, setTerm] = useState("");

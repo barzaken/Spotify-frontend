@@ -13,7 +13,8 @@ export const StationPreview = ({station}) => {
     }
 
     return(
-        <Card sx={{ maxWidth: 200, minHeight:250,minWidth:150 }} onClick={() => openStation(station)}>
+        <Card sx={{ minWidth: 200, minHeight:255,maxHeight:285,maxWidth:200}} onClick={() => openStation(station)}>
+        {/* <Card onClick={() => openStation(station)}> */}
         <CardActionArea className="card-preview">
           <CardMedia
             component="img"

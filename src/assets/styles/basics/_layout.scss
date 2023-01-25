@@ -76,10 +76,11 @@
             min-width: 150px !important;
             word-break: break-word;
             h1 {
-                position: absolute;
-                left: 50px;
-                margin: 0;
                 font-size: 16px;
+            }
+            img{
+                width: 50px;
+                bottom: -5px;
             }
         }
     }

@@ -16,7 +16,8 @@ export const AppHeader = () => {
   const user = useSelector((state) => state.userModule.user)
   const avgColor = useSelector((state) => state.stationModule.currStation?.avgColor?.rgba)
   const location = useLocation()
-  const currColor = (location.pathname.length > 10) ? avgColor : avgColor
+  console.log(location.pathname.slice(0,9));
+  const currColor = (location.pathname.slice(0,9) === '/playlist' || location.pathname === '/') ? avgColor : '#121212'
   const [term, setTerm] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);

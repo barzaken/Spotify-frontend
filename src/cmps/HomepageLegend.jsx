@@ -38,8 +38,8 @@ export const HomepageLegend = () => {
                         <PlayCircleFilledWhiteIcon onClick={(ev) => playStation(ev,station)} className="play-btn" />
                     </div>) : <>
                     {Array.from(new Array(3)).map((item,idx) => 
-                    <div className="preview">
-                       <Skeleton key={idx} variant="rectangular" width={'100%'} height={70} />
+                    <div className="preview" key={idx}>
+                       <Skeleton variant="rectangular" width={'100%'} height={70} />
                     </div>
 )}
                         </>}

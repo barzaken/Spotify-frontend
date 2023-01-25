@@ -32,3 +32,17 @@ h6 {
     } 
 }
 }	
+
+.MuiListItemIcon-root{
+    min-width: 40px !important;
+}
+.MuiListItemText-root{
+    .MuiListItemText-primary{
+        font-size: 14px;
+    }
+}
+
+.MuiCard-root{
+    background:#181818 !important ;
+    border-radius: 5px !important;
+}

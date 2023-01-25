@@ -6,7 +6,6 @@ export function loadStations() {
         try {
             const filterBy = getState().stationModule.filterBy
             const stations = await stationService.query(filterBy)
-            console.log(stations)
             dispatch({ type: 'SET_STATIONS', stations })
             return stations
         } catch (err) {
@@ -49,9 +48,7 @@ export function getStationById(stationId) {
                 dispatch({ type: 'UPDATE_STATION',updatedStation })
             })
             const station = await stationService.getById(stationId)
-            console.log('here',station);
             await dispatch({ type: 'SET_STATION', currStation: station })
-            console.log('set station',station);
             return station
         } catch (err) {
             console.log('err:', err)
@@ -97,7 +94,6 @@ export function setSearchTerm(term) {
     }
 }
 export function setStation(station) {
-    console.log('new station');
     return (dispatch) => {
         try {
             dispatch({ type: 'SET_STATION', currStation: { ...station } })

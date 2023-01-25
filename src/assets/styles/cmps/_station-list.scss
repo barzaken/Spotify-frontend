@@ -11,17 +11,23 @@
     display: flex !important;
     flex-direction: column;
     min-height: 100%;
+    width: 200px;
+    height: 285px;
 }
 .card-image {
     flex-grow: 1;
-    padding: 8px;
-    border-radius: 15px;
+    // padding: 8px;
+    min-width: 150px;
+    max-width: 172px;
+    min-height: 150px;
+    max-height: 172px;
+    border-radius: 7px;
     object-fit: cover !important;
 }
 
 .card-text {
     align-self: flex-start;
-    padding: 8px !important ;
+    padding: 16px !important ;
     h6 {
         margin: 0;
         font-size: 14px;

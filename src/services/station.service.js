@@ -21,16 +21,13 @@ window.cs = stationService
 
 
 async function query(filterBy = { txt: '', price: 0 }) {
-    console.log('send req');
     return httpService.get(STORAGE_KEY, filterBy)
 
 }
 function getById(stationId) {
-    console.log('sent req fromid');    // return storageService.get(STORAGE_KEY, stationId)
     return httpService.get(`station/${stationId}`)
 }
 function getSongById(stationId) {
-    console.log('send req!');
     // return storageService.get(STORAGE_KEY, stationId)
     return httpService.get(`song/${stationId}`)
 }
@@ -40,7 +37,6 @@ async function remove(stationId) {
     return httpService.delete(`station/${stationId}`)
 }
 async function search(term) {
-    console.log('sent search');
     return httpService.get(`song/search/${term}`)
 }
 async function save(station) {
