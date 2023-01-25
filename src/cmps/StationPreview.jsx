@@ -5,12 +5,23 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import EmptyCover from '../assets/imgs/emptyCover.png';
+import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
+import {setPlaylist,setSong} from "../store/actions/station.actions.js"
+import {useDispatch} from 'react-redux'
 
 export const StationPreview = ({station}) => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
     const openStation = (station) => {
         navigate(`/playlist/${station._id}`)
     }
+
+    function playStation(ev,station){
+      ev.stopPropagation();
+      dispatch(setPlaylist(station))
+      dispatch(setSong(station.songs[0]))
+  }
 
     return(
         <Card sx={{ minWidth: 200, minHeight:255,maxHeight:285,maxWidth:200}} onClick={() => openStation(station)}>
@@ -22,6 +33,7 @@ export const StationPreview = ({station}) => {
             alt=""
             className='card-image'
           />
+        <PlayCircleFilledWhiteIcon onClick={(ev) => playStation(ev,station)} className="play-btn" />
           <CardContent className='card-text'>
             <Typography gutterBottom variant="h6" component="h5">
             {station?.name}

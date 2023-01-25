@@ -18,9 +18,8 @@ import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
 import Divider from '@mui/material/Divider';
 import update from 'immutability-helper'
 import { useCallback } from 'react'
-import { useDrop } from 'react-dnd'
 import CloseIcon from '@mui/icons-material/Close';
-
+import FavoriteIcon from '@mui/icons-material/Favorite';
 export const StationDetails = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -135,6 +134,14 @@ export const StationDetails = () => {
     navigate('/')
   }
 
+  async function toggleLike(){
+    if(currStation.likedByUsers.includes(user._id)) {
+      const idx = currStation.likedByUsers.findIndex(u => u._id === user._id)
+      currStation.likedByUsers.splice(idx,1)
+    } else currStation.likedByUsers.push(user._id)
+    await dispatch(updateStation({ ...currStation, songs: songs }))
+
+  }
 
 
   if (!currStation) return (<h1>Loading..</h1>)
@@ -159,7 +166,7 @@ export const StationDetails = () => {
             <PauseCircleFilledIcon onClick={() => togglePlaylist()} className="play-btn" />
             : <PlayCircleFilledWhiteIcon onClick={() => togglePlaylist()} className="play-btn" />
           }
-          <FavoriteBorderIcon sx={{ color: '#b3b3b3', fontSize: 40 }} />
+          {currStation.likedByUsers.includes(user._id) ? <FavoriteIcon onClick={() => toggleLike()} className="fav-btn" /> : <FavoriteBorderIcon onClick={() => toggleLike()} className="fav-btn"  sx={{ color: '#b3b3b3 !important', fontSize: 40 }}  />  }
           {isEdit && <>
             <MoreHorizIcon
               aria-controls={openMenu ? 'basic-menu' : undefined}

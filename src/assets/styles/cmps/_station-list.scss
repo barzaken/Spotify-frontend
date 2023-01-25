@@ -13,6 +13,25 @@
     min-height: 100%;
     width: 200px;
     height: 285px;
+    position: relative;
+    .play-btn{
+        color: $clr1;
+        font-size: 56px;
+        position: absolute;
+        right: 20px;
+        bottom: 100px;
+        cursor: pointer;
+        transition: opacity 0.3s,ease-in;
+        display: none ;
+        &:hover{
+            scale: 1.1;
+        }
+    }
+    &:hover{
+        .play-btn{
+            display: block;
+        }
+    }
 }
 .card-image {
     flex-grow: 1;

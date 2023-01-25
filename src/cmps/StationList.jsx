@@ -1,11 +1,9 @@
-import { useSelector } from "react-redux"
 import Skeleton from '@mui/material/Skeleton';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { StationPreview } from "./StationPreview"
 
-export const StationList = () => {
-    const stations = useSelector((state) => state.stationModule.stations)
+export const StationList = ({stations}) => {
     if(!stations || !stations.length) return(     
     <div className="station-list">
              { Array.from(new Array(7)).map((item,idx) => 

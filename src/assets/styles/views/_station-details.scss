@@ -76,6 +76,14 @@
             scale: 1.1;
         }
     }
+    .fav-btn{
+        transition: 0.25s;
+        color: $clr1;
+        font-size: 40px;
+        &:hover{
+            scale: 1.1;
+        }
+    }
 }
 
 .modal {

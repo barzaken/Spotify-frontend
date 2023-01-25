@@ -32,12 +32,15 @@ export const SideBar = () => {
   const [open, setOpen] = useState(false);
   const playlists = useSelector((state) => state.stationModule.stations)
   const user = useSelector((state) => state.userModule.user)
-  const myPlaylists = playlists.filter(playlist => playlist?.createdBy?._id === user?._id)
+  const myPlaylists = playlists.filter(playlist => playlist?.createdBy?._id === user?._id || playlist.likedByUsers.includes(user?._id))
   const handleClick = () => {
     setOpen(!open);
   };
 
   async function createStation() {
+    if(!user){
+      return  dispatch(alert('Please log in'))
+    }
     const station = await dispatch(addStation())
     dispatch(alert('New Playlist Created'))
     navigate(`/playlist/${station._id}`)
@@ -82,22 +85,22 @@ export const SideBar = () => {
         <nav aria-label="main mailbox folders">
           <List>
             <ListItem disablePadding>
-              <ListItemButton onClick={() => createStation()}>
+              <ListItemButton disabled={!user} onClick={() => createStation()}>
                 <ListItemIcon>
                   <AddBoxIcon />
                 </ListItemIcon>
                 <ListItemText primary="Create Playlist" />
               </ListItemButton>
             </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton>
+            {/* <ListItem disablePadding>
+              <ListItemButton disabled={!user}>
                 <ListItemIcon>
                   <FavoriteBorderIcon />
                 </ListItemIcon>
                 <ListItemText primary="Liked songs" />
               </ListItemButton>
-            </ListItem>
-            <ListItemButton onClick={handleClick}>
+            </ListItem> */}
+            <ListItemButton disabled={!user} onClick={handleClick}>
               <ListItemIcon>
                 <QueueMusicIcon />
               </ListItemIcon>
