@@ -32,6 +32,7 @@ export const SideBar = () => {
   const [open, setOpen] = useState(false);
   const playlists = useSelector((state) => state.stationModule.stations)
   const user = useSelector((state) => state.userModule.user)
+  // const myPlaylists = []
   const myPlaylists = playlists.filter(playlist => playlist?.createdBy?._id === user?._id || playlist.likedByUsers.includes(user?._id))
   const handleClick = () => {
     setOpen(!open);

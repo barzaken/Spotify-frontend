@@ -44,5 +44,18 @@ h6 {
 
 .MuiCard-root{
     background:#181818 !important ;
-    border-radius: 5px !important;
+    border-radius: 10px !important;
+    min-width: max-content
+}
+
+.react-simplified-player-container{
+    background: #181818 !important;
+    border: none !important;
+    padding: 0 7px !important;
+    .song-content{
+        .song-credits{
+            overflow: hidden;
+white-space: nowrap;
+        }
+    }
 }

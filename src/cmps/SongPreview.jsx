@@ -47,24 +47,27 @@ export const SongPreview = ({station,song,idx,isEdit,toggleSong,playSong,findSon
     return(
         <>
     <TableRow className="songs-table" ref={(node) => isDragMode && drag(drop(node))}>
-    <TableCell sx={{maxWidth:30}} align="center">{isPlaying ? <MusicNoteIcon sx={{maxWidth:20}} color="success" /> : idx}</TableCell>
+    {idx && <TableCell sx={{maxWidth:30}} align="center">{isPlaying ? <MusicNoteIcon sx={{maxWidth:20}} color="success" /> : idx}</TableCell>}
     <TableCell  onClick={() => playSong(song)} component="th" scope="row">
         <div className="song-info">
             <div className="img">
                 <div className="img-hover">
             {isPlaying ? <PauseIcon className="play-icon"/> : <PlayArrowIcon className="play-icon"/> }
                 </div>
-                <img className="cover" src={song.song_cover} alt="" />
+                <img className="cover" src={song?.song_cover} referrerPolicy="no-referrer"  alt="" />
             </div>
             <div className="info">
         <span className={isPlaying ? 'playing' : ''}>{song.song_title}</span>
-        <small>{song.song_artist}</small>
+        <small>{ song.song_artist }</small>
             </div>
         </div>
     </TableCell>
+    <TableCell>{song.song_album}</TableCell>
+    <TableCell>{song.duration.label}</TableCell>
     {isEdit && <TableCell>  <button onClick={() => toggleSong(song)} className= {station?.songs?.find(s => s.songId === song.songId) ? 'remove' : 'add'} >
     {station?.songs?.find(s => s.songId === song.songId) ? 'Remove' : 'Add'}
         </button> </TableCell>}
+
   </TableRow>
         </>
     )

@@ -135,6 +135,7 @@ export const StationDetails = () => {
   }
 
   async function toggleLike(){
+    if(!user) return
     if(currStation.likedByUsers.includes(user._id)) {
       const idx = currStation.likedByUsers.findIndex(u => u._id === user._id)
       currStation.likedByUsers.splice(idx,1)
@@ -166,7 +167,7 @@ export const StationDetails = () => {
             <PauseCircleFilledIcon onClick={() => togglePlaylist()} className="play-btn" />
             : <PlayCircleFilledWhiteIcon onClick={() => togglePlaylist()} className="play-btn" />
           }
-          {currStation.likedByUsers.includes(user._id) ? <FavoriteIcon onClick={() => toggleLike()} className="fav-btn" /> : <FavoriteBorderIcon onClick={() => toggleLike()} className="fav-btn"  sx={{ color: '#b3b3b3 !important', fontSize: 40 }}  />  }
+          {currStation.likedByUsers.includes(user?._id) ? <FavoriteIcon onClick={() => toggleLike()} className="fav-btn" /> : <FavoriteBorderIcon onClick={() => toggleLike()} className="fav-btn"  sx={{ color: '#b3b3b3 !important', fontSize: 40 }}  />  }
           {isEdit && <>
             <MoreHorizIcon
               aria-controls={openMenu ? 'basic-menu' : undefined}
@@ -187,7 +188,7 @@ export const StationDetails = () => {
         </div>
       </div>
       <div className="songs">
-        <SongList isDragMode={isEdit} updateStationSongs={updateStationSongs} findSong={findSong} moveSong={moveSong} station={currStation} toggleSong={toggleSong} playSong={playSong} isEdit={isEdit} songs={term ? queryItems : songs} />
+        <SongList isDragMode={isEdit} updateStationSongs={updateStationSongs} findSong={findSong} moveSong={moveSong} station={currStation} toggleSong={toggleSong} playSong={playSong} isEdit={isEdit} songs={term ? queryItems?.songs : songs} />
       </div>
       <Modal
         open={open}

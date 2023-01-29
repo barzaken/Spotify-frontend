@@ -10,46 +10,54 @@
 .card-preview{
     display: flex !important;
     flex-direction: column;
-    min-height: 100%;
-    width: 200px;
-    height: 285px;
+    max-width: 205px;
+    min-width: 205px ;
+    height:290px;
+    // padding: 20px 0 !important;
+
+    // padding: 20px !important;
     position: relative;
     .play-btn{
         color: $clr1;
         font-size: 56px;
         position: absolute;
         right: 20px;
-        bottom: 100px;
+        bottom: 90px;
         cursor: pointer;
-        transition: opacity 0.3s,ease-in;
-        display: none ;
+        opacity: 0;
+        transition: opacity .6s,scale .6s , bottom 0.6s;
         &:hover{
             scale: 1.1;
         }
     }
     &:hover{
         .play-btn{
-            display: block;
+            bottom: 100px;
+            opacity: 1;
         }
     }
 }
 .card-image {
-    flex-grow: 1;
+    // flex-basis: 0%;
     // padding: 8px;
-    min-width: 150px;
+    // min-width: 150px;
     max-width: 172px;
-    min-height: 150px;
+    // min-height: 150px;
     max-height: 172px;
     border-radius: 7px;
-    object-fit: cover !important;
 }
 
 .card-text {
+    // height: 100px;
+    // flex:1;
+    max-height: 70px;
     align-self: flex-start;
     padding: 16px !important ;
     h6 {
         margin: 0;
         font-size: 14px;
+        font-weight: 600;
+        font-family: var(--font-family, CircularSp, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, var(--fallback-fonts, sans-serif));
     }
     h5 {
         font-size: 16px;

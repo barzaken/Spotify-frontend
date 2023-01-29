@@ -61,7 +61,7 @@ export const AppHeader = () => {
               <button onClick={() => navigate(1)}> {'>'} </button>
               </div>
 
-                {location.pathname === '/search' && <input onChange={(event) => setTerm(event.target.value)} type="text" placeholder="Search for music"></input>}
+                {location.pathname === '/search' && <input onChange={(event) => setTerm(event.target.value)} type="text" placeholder="What do you want to listen to?"></input>}
             </div>
             <div className="user-section">
                 {user?.fullname ? 

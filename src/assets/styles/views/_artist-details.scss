@@ -1,0 +1,100 @@
+.artist-details {
+    min-height: max-content;
+    width: 100%;
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+    overflow-y: scroll ;
+    margin-bottom: 90px !important;
+
+    .artist-showcase {
+        display: flex;
+        flex-direction: column;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 29px;
+        gap: 25px;
+        h1{
+            cursor: pointer;
+            width: max-content;
+        }
+    }
+    .artist-header {
+        color: white;
+        flex-basis: 100%;
+        display: flex;
+        gap: 20px;
+        min-height: 330px;
+
+        .mobile-back-btn{
+            position: absolute;
+            top: 24px;
+            display: none;
+        }
+        .img {
+            .artist-img {
+                max-width: 234px;
+                height: 234px;
+                display: block;
+            }
+        }
+        .info {
+            align-self: flex-end;
+            flex-grow: 1;
+            h1 {
+                font-size: 96px;
+                margin: 0 0 0.1em;
+            }
+        }
+    }
+    .artist-controller {
+        overflow-y: scroll !important;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        .artist-option-menu{
+            color: #b3b3b3;
+        }
+        .artist-input{
+            background-color: hsla(0,0%,100%,.1);
+            border: 0;
+            border-radius: 4px;
+            color: hsla(0,0%,100%,.7);
+            height: 40px;
+            padding: 8px 32px;
+            width: 100%;
+            max-width: 360px;
+            &:focus{
+                outline: none;
+            }
+        }
+        
+    }
+    .songs {
+        min-height: 300px;
+        max-height: 350px;
+        flex-grow: 1;
+        overflow-y: scroll;
+    }
+    .play-btn{
+        cursor: pointer;
+        transition: 0.25s;
+        color: $clr1;
+        font-size: 66px;
+        &:hover{
+            scale: 1.1;
+        }
+    }
+    .suggestions{
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+        .station-list {
+            display: flex;
+            width: max-content;
+            gap: 20px;
+            overflow: scroll;
+        }
+    }
+}

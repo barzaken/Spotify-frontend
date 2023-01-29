@@ -9,7 +9,7 @@
     .station-showcase {
         display: flex;
         flex-direction: column;
-        padding: 22px;
+        padding: 29px;
         gap: 25px;
         h1{
             cursor: pointer;
@@ -69,6 +69,7 @@
         overflow-y: scroll;
     }
     .play-btn{
+        cursor: pointer;
         transition: 0.25s;
         color: $clr1;
         font-size: 66px;

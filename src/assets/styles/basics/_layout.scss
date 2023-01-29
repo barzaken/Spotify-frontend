@@ -19,7 +19,19 @@
         .side-bar {
             display: none;
         }
+        .artist-details{
+            .artist-showcase{
+                .info{
+                    h1{
+                        font-size: 1.5em;
+                    }
+                }
+                .mobile-back-btn {
+                    display: block;
 
+                }
+        }
+        }
         .station-details {
             .station-controller {
                 flex-direction: row-reverse;

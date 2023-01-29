@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
     stations: [],
+    albums:[],
     currStation:null,
     currSong:null,
     playlist:{
@@ -22,6 +23,11 @@ export function stationReducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 stations: action.stations
+            }
+        case 'SET_ALBUMS':
+            return {
+                ...state,
+                albums: action.albums
             }
         case 'SET_SONG':
             return {
@@ -80,6 +86,7 @@ export function stationReducer(state = INITIAL_STATE, action) {
                 searchTerm: action.searchTerm
             }
         case 'SET_QUERY':
+            console.log(action.query);
             return {
                 ...state,
                 query: action.query

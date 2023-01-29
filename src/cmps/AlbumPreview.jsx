@@ -9,7 +9,7 @@ import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite
 import {setPlaylist,setSong} from "../store/actions/station.actions.js"
 import {useDispatch} from 'react-redux'
 
-export const StationPreview = ({station}) => {
+export const AlbumPreview = ({album}) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -20,27 +20,31 @@ export const StationPreview = ({station}) => {
     function playStation(ev,station){
       ev.stopPropagation();
       dispatch(setPlaylist(station))
-      dispatch(setSong(station.songs[0]))
+      // dispatch(setSong(station?.songs[0]))
   }
 
     return(
-        <Card sx={{ minWidth: 200, minHeight:255,maxHeight:285,maxWidth:200}} onClick={() => openStation(station)}>
-        {/* <Card onClick={() => openStation(station)}> */}
+        // <Card sx={{ minWidth: 200, minHeight:255,maxHeight:285,maxWidth:200}} onClick={() => openStation(station)}>
+         <Card onClick={() => openStation(album)}> 
         <CardActionArea className="card-preview">
           <CardMedia
             component="img"
-            image={station.songs[0]?.song_cover || EmptyCover}
+            image={album.thumbnailUrl}
+            // image={station?.thumbnailUrl || EmptyCover}
             alt=""
             className='card-image'
           />
-        <PlayCircleFilledWhiteIcon onClick={(ev) => playStation(ev,station)} className="play-btn" />
+        <PlayCircleFilledWhiteIcon onClick={(ev) => playStation(ev,album)} className="play-btn" />
           <CardContent className='card-text'>
             <Typography gutterBottom variant="h6" component="h5">
-            {station?.name}
+            {album.title}
             </Typography>
             <Typography variant="body2" color="text.secondary" component="h6">
-              {station?.songs[0]?.song_artist}
+              {album?.artist}
             </Typography>
+            {/* <Typography variant="body2" color="text.secondary" component="h6">
+              {station?.year }
+            </Typography> */}
           </CardContent>
         </CardActionArea>
       </Card>

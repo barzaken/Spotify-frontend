@@ -15,7 +15,10 @@ export const stationService = {
     search,
     getEmptyStation,
     getSongById,
-    addstationMsg
+    addstationMsg,
+    getAlbumById,
+    getArtistById,
+    getAlbums
 }
 window.cs = stationService
 
@@ -30,6 +33,18 @@ function getById(stationId) {
 function getSongById(stationId) {
     // return storageService.get(STORAGE_KEY, stationId)
     return httpService.get(`song/${stationId}`)
+}
+function getAlbumById(albumId) {
+    // return storageService.get(STORAGE_KEY, stationId)
+    return httpService.get(`album/${albumId}`)
+}
+function getAlbums() {
+    // return storageService.get(STORAGE_KEY, stationId)
+    return httpService.get(`album`)
+}
+function getArtistById(artistId) {
+    // return storageService.get(STORAGE_KEY, stationId)
+    return httpService.get(`artist/${artistId}`)
 }
 
 async function remove(stationId) {

@@ -21,7 +21,7 @@ export const HomepageLegend = ( {stations}) => {
     }
     if(!stations) return <div>
 {Array.from(new Array(3)).map((item,idx) => {
-<Skeleton key={idx} variant="rectangular" width={210} height={60} />
+<Skeleton key={idx} variant="rectangular" width={215} height={60} />
 })}
     </div>
     return(
@@ -30,7 +30,7 @@ export const HomepageLegend = ( {stations}) => {
             <div className="previews">
                 {stations.length ? stations.map((station,idx) => 
                     <div data-idx={idx} key={idx} onMouseOver={changeBackground} onClick={() =>  navigate(`/playlist/${station._id}`)} className="preview">
-                        <img src={station.songs[0].song_cover} alt="" />
+                        <img src={station.songs[0]?.song_cover} alt="" />
                         <p>{station.name}</p>
                         <PlayCircleFilledWhiteIcon onClick={(ev) => playStation(ev,station)} className="play-btn" />
                     </div>) : <>

@@ -6,16 +6,19 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-export const SongList = ({station,songs,isEdit,toggleSong,playSong,moveSong,findSong,updateStationSongs,isDragMode}) => {
+export const SongList = ({ station, songs, isEdit, toggleSong, playSong, moveSong, findSong, updateStationSongs, isDragMode }) => {
 
-  return ( 
+  return (
     <TableContainer >
       <Table className="main-table" aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell align="center">#</TableCell>
-            <TableCell>Title</TableCell>
-           {isEdit && <TableCell></TableCell>}
+            <TableCell>TITLE</TableCell>
+            <TableCell>ALBUM</TableCell>
+            <TableCell>Length</TableCell>
+
+            {isEdit && <TableCell></TableCell>}
           </TableRow>
         </TableHead>
         <TableBody className="table-song">
@@ -25,6 +28,6 @@ export const SongList = ({station,songs,isEdit,toggleSong,playSong,moveSong,find
         </TableBody>
       </Table>
     </TableContainer>
-)
+  )
 
 }

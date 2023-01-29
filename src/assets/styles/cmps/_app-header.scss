@@ -1,18 +1,18 @@
-.app-header{
-    padding: 0px 24px 0px;
+.app-header {
+    padding: 0px 29px 0px;
     display: flex;
     width: 100%;
     grid-area: header;
     color: white;
-    .mobile-logo{
+    .mobile-logo {
         display: none;
     }
-    .actions{
+    .actions {
         display: flex;
         align-items: center;
-        gap: 14px;
+        gap: 17px;
         flex-grow: 1;
-        input{
+        input {
             border: 0;
             display: block;
             border-radius: 500px;
@@ -20,14 +20,15 @@
             display: inline-block;
             padding: 6px 48px;
             text-overflow: ellipsis;
-            flex-basis: 25%;
-            &:focus{
+            flex: 1;
+            max-width: 365px;
+            &:focus {
                 outline: none;
             }
         }
-        .btn-container{
+        .btn-container {
             align-items: center;
-            background-color: rgba(0,0,0,.7);
+            background-color: rgba(0, 0, 0, 0.7);
             border-radius: 50%;
             cursor: pointer;
             display: inline-flex;
@@ -35,7 +36,7 @@
             justify-content: center;
             width: 32px;
             transition: 0.1s;
-            button{
+            button {
                 color: white;
                 cursor: pointer;
 
@@ -44,72 +45,72 @@
                 font-size: 30px;
                 font-weight: 300;
             }
-            &:hover{
-                background-color: rgba(0,0,0,.3);
-
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.3);
             }
         }
     }
-    .user-section{
+    .user-section {
         display: flex;
         align-items: center;
         gap: 10px;
-        .user-info{
+        .user-info {
             cursor: pointer;
             padding: 5px 10px;
             border-radius: 5px;
             border-radius: 500px;
-            background: hsla(0,0%,100%,.2);
             display: flex;
             align-items: center;
             gap: 10px;
-            h3{
+            h3 {
                 margin: 0;
             }
-            img{
+            img {
                 width: 30px;
             }
+            &:hover {
+                background: hsla(0, 0%, 100%, 0.2);
+            }
         }
-        .login-btn,.signup-btn{            
+        .login-btn,
+        .signup-btn {
             cursor: pointer;
             color: white;
             font-size: 30px;
             background-color: transparent;
             border: none;
-    border-radius: 500px;
-    font-size: inherit;
-    min-block-size: 48px;
-    padding-inline: 32px;
-    transition: 0.25s;
-    &:hover{
-        scale: 1.1;
-    }
+            border-radius: 500px;
+            font-size: inherit;
+            min-block-size: 48px;
+            padding-inline: 32px;
+            transition: 0.25s;
+            &:hover {
+                scale: 1.1;
+            }
         }
-        .login-btn{
+        .login-btn {
             background-color: white;
             color: black;
         }
     }
 }
 
-
-@media screen and (max-width:640px) {
-
-    .app-header{
+@media screen and (max-width: 640px) {
+    .app-header {
         display: none;
-        .mobile-logo{
+        .mobile-logo {
             display: block;
             display: flex;
             align-items: center;
             gap: 10px;
-            h1{
+            h1 {
                 margin: 0;
             }
-            .logo-img{
+            .logo-img {
                 width: 24px;
             }
         }
-        .actions{
+        .actions {
             display: none;
         }
     }

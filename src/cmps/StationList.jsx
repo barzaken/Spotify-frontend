@@ -1,9 +1,10 @@
 import Skeleton from '@mui/material/Skeleton';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { StationPreview } from "./StationPreview"
+import { CardPreview } from "./CardPreview"
 
 export const StationList = ({stations}) => {
+
     if(!stations || !stations.length) return(     
     <div className="station-list">
              { Array.from(new Array(7)).map((item,idx) => 
@@ -21,7 +22,8 @@ export const StationList = ({stations}) => {
     )
     return (
                 <div className="station-list">
-                    {stations.map(station => <StationPreview key={station._id} station={station}  />)}
+                    {/* {stations.map(station => <StationPreview key={station._id} station={station}  />)} */}
+                    {stations.map(station => <CardPreview type={station.title ? 'album' : 'playlist'}  key={station._id} id={station.title ?station.albumId : station._id} img={station.thumbnailUrl || station?.songs[0]?.song_cover } hasStation={station.name} station={station} title={station.name || station.title} text={station.title ? 'Album' : 'Playlist'} />)}
                 </div>
     )
 }

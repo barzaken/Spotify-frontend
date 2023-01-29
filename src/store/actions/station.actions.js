@@ -25,6 +25,37 @@ export function removeStation(stationId) {
         }
     }
 }
+export function getAlbum(albumId) {
+    return async (dispatch) => {
+        try {
+            const album = await stationService.getAlbumById(albumId)
+            return album
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}
+export function loadAlbums() {
+    return async (dispatch) => {
+        try {
+            const albums = await stationService.getAlbums()
+            dispatch({ type: 'SET_ALBUMS', albums })
+            return albums
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}
+export function getArtist(artistId) {
+    return async (dispatch) => {
+        try {
+            const artist = await stationService.getArtistById(artistId)
+            return artist
+        } catch (err) {
+            console.log('err:', err)
+        }
+    }
+}
 
 export function updateStation(station) {
     return async (dispatch) => {

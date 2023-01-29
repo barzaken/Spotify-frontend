@@ -1,78 +1,108 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { setSong } from '../store/actions/station.actions';
-import { SongList } from '../cmps/SongList';
-// import { TextField } from '@mui/material';
-import { useState,useEffect } from "react";
-
+import { SongPreview } from '../cmps/SongPreview';
+import { CardPreview } from '../cmps/CardPreview';
+import { useState, useEffect } from "react";
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import Table from '@mui/material/Table';
 import { setSearchTerm } from "../store/actions/station.actions"
 
 
 export const CategoryPage = () => {
+    const navigate = useNavigate()
+    const [term, setTerm] = useState("");
+    const dispatch = useDispatch()
+    const searchTerm = useSelector((state) => state.stationModule.searchTerm)
+    const queryItems = useSelector((state) => state.stationModule.query)
+    const categories = useSelector((state) => state.stationModule.albums)
+    
     function randColor() {
         return '#' + Math.floor(Math.random() * 4000).toString(16);
     }
 
-    const [term, setTerm] = useState("");
     useEffect(() => {
         const search = setTimeout(() => {
-            if(!term) return
+            if (!term) return
             dispatch(setSearchTerm(term))
         }, 2000)
         return () => clearTimeout(search)
-      }, [term])
-      
-    const dispatch = useDispatch()
-    const searchTerm = useSelector((state) => state.stationModule.searchTerm)
-    const queryItems = useSelector((state) => state.stationModule.query)
+    }, [term])
+
+
     async function playSong(song) {
         dispatch(setSong(song))
     }
-    const [categories,setCategories] = useState([
-        { name: 'Best Hits', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-        { name: '2023 Israel Hits', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-        { name: '2023 UK Hits', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-        { name: 'All Time Hits', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-        { name: '2000 Hits', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-        { name: '2010 Hits', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-        { name: '2020 Hits', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-        { name: `90s Mix`, imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-        { name: '80s Mix', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-        { name: 'Moody Mix', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-        { name: 'Happy Mix', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-        { name: 'Pop Mix', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-        { name: 'Workout Mix', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-        { name: 'Sports Mix', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-        { name: 'Hype Mix', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-        { name: 'Live Show Performance', imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/59/Kesha_Warrior.jpeg", color: randColor() },
-    ])
+    if (!categories) return <div>hello</div>
     return (
         <section className="category-page main-layout">
             <h1 className="mobile-input-title">Search</h1>
-            <input type="search" onChange={(event) => setTerm(event.target.value)} className='mobile-input' placeholder="Search for music"  />
-            <div className="search-header">
-            <h1>{searchTerm ? `Results for ${searchTerm}` : 'Explore Categories'}</h1>
-            {queryItems && <button onClick={() => dispatch(setSearchTerm(null))}>Clear Search</button>}
-            </div>
-            {(searchTerm && queryItems) ? <div className="song-list">
-                <div className="songs">
-                {queryItems.slice(0, 2).map((song) =>
-                    <div onClick={() => playSong(song)} className="song" key={song.songId} >
-                        <h1>{song.song_title}</h1>
-                        <img src={song.song_cover} alt='' />
+            <input type="search" onChange={(event) => setTerm(event.target.value)} className='mobile-input' placeholder="Search for music" />
+            {(searchTerm && (queryItems.songs.length || queryItems.albums.length)) ? <div className="results">
+                <div className="header">
+                    <div className="top-result">
+                        <h2>Top result</h2>
+                        <div className="container" onClick={() => queryItems.artist[0] && navigate(`/artist/${queryItems.artist[0]?.artistId}`.replace('/search'), { replace: true })}  >
+                            <img src={queryItems.artist[0]?.thumbnails[0].url || queryItems.songs[0]?.song_cover} referrerPolicy="no-referrer" alt="" />
+                            <h1>{queryItems.artist[0]?.name || queryItems.songs[0]?.song_title}</h1>
+                            <div className="type">
+                                <span>{queryItems.artist[0] ? 'Artist' : 'Song'}</span>
+                            </div>
+                        </div>
                     </div>
-                )}
+                    <div className="songs">
+                        <h2>Songs</h2>
+                        <TableContainer>
+                            <Table className="table">
+                                <TableBody className="table">
+                                    {queryItems?.songs?.map(song => <SongPreview key={song._id} song={song} playSong={playSong} />)}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </div>
                 </div>
-                <SongList isDragMode={false} playSong={playSong} songs={queryItems} />
-            </div>
-            :<div className="collection-list">
-                {categories.map((category) =>
-                    <div className="collection" onClick={() => setTerm(`${category.name}`)} key={category.color} style={{ backgroundColor: category.color }}>
-                        <h1>{category.name}</h1>
-                        <img src={category.imgUrl} alt='' />
+                <div className="category-list" style={{ padding: '0' }}>
+                    <div className="category-container">
+                        <h1>Albums</h1>
+                        <div className="category">
+                            <div className="station-list">
+                                {queryItems.artist[0] ? queryItems.artist[0].albums?.map(album => <CardPreview key={album.albumId} id={album.albumId} type="album" img={album.thumbnailUrl} title={album.title} text={album.year} />) : queryItems.albums?.map(album => <CardPreview key={album.albumId} id={album.albumId} type="album" img={album.thumbnailUrl} title={album.title} text={album.year} />)}
+
+                            </div>
+                        </div>
                     </div>
-                )}
-            </div> }
+                    {queryItems.artist[0] && <>
+                        <div className="category-container">
+                            <h1>Suggested Songs</h1>
+                            <div className="category">
+                                <div className="station-list">
+                                    {queryItems.artist[0].singles?.map(single => <CardPreview type="album" id={single.albumId} img={single.thumbnailUrl} key={single.title} title={single.title} text={single.year} />)}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div className="category-container">
+                            <h1>Artists</h1>
+                            <div className="category">
+                                <div className="station-list">
+                                    {queryItems.artist[0].suggestedArtists?.map(artist => <CardPreview type="artist" id={artist.artistId} img={artist.thumbnailUrl} key={artist.artistId} title={artist.name} text={artist.subscribers} />)}
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                    }
+                </div>
+            </div>
+                : <div className="collection-list">
+                    {categories?.map((category) =>
+                        <div className="collection" onClick={() => navigate(`/album/${category.albumId}`.replace('/search'), { replace: true })} key={category._id} style={{ backgroundColor: randColor() }}>
+                            <h1>{category.title}</h1>
+                            <img src={category.thumbnailUrl} referrerPolicy="no-referrer" alt='' />
+                        </div>
+                    )}
+                </div>}
         </section>
 
     )
