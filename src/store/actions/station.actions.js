@@ -186,7 +186,7 @@ export function toggleIsPlaying(mode) {
 export function setSong(song) {
     return async (dispatch) => {
         try {
-            if(song) song.url = await stationService.getSongById(song.songId)
+           song.url =   await stationService.getSongById(song.songId)
             dispatch({ type: 'SET_SONG', currSong: { ...song } })
         } catch (err) {
             console.log('err:', err)

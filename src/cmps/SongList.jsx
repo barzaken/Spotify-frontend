@@ -17,7 +17,6 @@ export const SongList = ({ station, songs, isEdit, toggleSong, playSong, moveSon
             <TableCell>TITLE</TableCell>
             <TableCell>ALBUM</TableCell>
             <TableCell>Length</TableCell>
-
             {isEdit && <TableCell></TableCell>}
           </TableRow>
         </TableHead>

@@ -8,7 +8,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import Divider from '@mui/material/Divider';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import SearchIcon from '@mui/icons-material/Search';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../assets/imgs/spotifylogo.png';
 import { useState } from 'react';
@@ -32,7 +31,6 @@ export const SideBar = () => {
   const [open, setOpen] = useState(false);
   const playlists = useSelector((state) => state.stationModule.stations)
   const user = useSelector((state) => state.userModule.user)
-  // const myPlaylists = []
   const myPlaylists = playlists.filter(playlist => playlist?.createdBy?._id === user?._id || playlist.likedByUsers.includes(user?._id))
   const handleClick = () => {
     setOpen(!open);
@@ -93,14 +91,6 @@ export const SideBar = () => {
                 <ListItemText primary="Create Playlist" />
               </ListItemButton>
             </ListItem>
-            {/* <ListItem disablePadding>
-              <ListItemButton disabled={!user}>
-                <ListItemIcon>
-                  <FavoriteBorderIcon />
-                </ListItemIcon>
-                <ListItemText primary="Liked songs" />
-              </ListItemButton>
-            </ListItem> */}
             <ListItemButton disabled={!user} onClick={handleClick}>
               <ListItemIcon>
                 <QueueMusicIcon />

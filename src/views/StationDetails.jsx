@@ -134,11 +134,11 @@ export const StationDetails = () => {
     navigate('/')
   }
 
-  async function toggleLike(){
-    if(!user) return
-    if(currStation.likedByUsers.includes(user._id)) {
+  async function toggleLike() {
+    if (!user) return
+    if (currStation.likedByUsers.includes(user._id)) {
       const idx = currStation.likedByUsers.findIndex(u => u._id === user._id)
-      currStation.likedByUsers.splice(idx,1)
+      currStation.likedByUsers.splice(idx, 1)
     } else currStation.likedByUsers.push(user._id)
     await dispatch(updateStation({ ...currStation, songs: songs }))
 
@@ -149,7 +149,7 @@ export const StationDetails = () => {
 
   return (
     <section className="station-details main-layout">
-      <div className="station-showcase" style={{ background: `linear-gradient(180deg, ${currStation?.avgColor?.rgba}, rgba(18, 18, 18, 1) 96%)` }}>
+      <div className="station-showcase" style={{ background: `linear-gradient(180deg, ${currStation?.avgColor?.rgba} , rgba(18, 18, 18, 1) 96%)` }}>
         <div className="station-header">
           <ArrowBackIosRoundedIcon onClick={() => navigate('/')} className="mobile-back-btn" />
           <div className="img">
@@ -167,7 +167,7 @@ export const StationDetails = () => {
             <PauseCircleFilledIcon onClick={() => togglePlaylist()} className="play-btn" />
             : <PlayCircleFilledWhiteIcon onClick={() => togglePlaylist()} className="play-btn" />
           }
-          {currStation.likedByUsers.includes(user?._id) ? <FavoriteIcon onClick={() => toggleLike()} className="fav-btn" /> : <FavoriteBorderIcon onClick={() => toggleLike()} className="fav-btn"  sx={{ color: '#b3b3b3 !important', fontSize: 40 }}  />  }
+          {currStation.likedByUsers.includes(user?._id) ? <FavoriteIcon onClick={() => toggleLike()} className="fav-btn" /> : <FavoriteBorderIcon onClick={() => toggleLike()} className="fav-btn" sx={{ color: '#b3b3b3 !important', fontSize: 40 }} />}
           {isEdit && <>
             <MoreHorizIcon
               aria-controls={openMenu ? 'basic-menu' : undefined}

@@ -22,7 +22,6 @@ export const StationList = ({stations}) => {
     )
     return (
                 <div className="station-list">
-                    {/* {stations.map(station => <StationPreview key={station._id} station={station}  />)} */}
                     {stations.map(station => <CardPreview type={station.title ? 'album' : 'playlist'}  key={station._id} id={station.title ?station.albumId : station._id} img={station.thumbnailUrl || station?.songs[0]?.song_cover } hasStation={station.name} station={station} title={station.name || station.title} text={station.title ? 'Album' : 'Playlist'} />)}
                 </div>
     )

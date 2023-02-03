@@ -4,6 +4,10 @@ import { httpService } from './http.service.js'
 // import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 
+const BASE_URL = process.env.NODE_ENV === 'production'
+    ? '/api/'
+    : '//localhost:3030/api/'
+
 
 const STORAGE_KEY = 'station'
 
@@ -30,20 +34,18 @@ async function query(filterBy = { txt: '', price: 0 }) {
 function getById(stationId) {
     return httpService.get(`station/${stationId}`)
 }
-function getSongById(stationId) {
-    // return storageService.get(STORAGE_KEY, stationId)
-    return httpService.get(`song/${stationId}`)
+async function getSongById(stationId) {
+    let {url} = await httpService.get(`song/${stationId}`)
+    url = BASE_URL+url
+    return url
 }
 function getAlbumById(albumId) {
-    // return storageService.get(STORAGE_KEY, stationId)
     return httpService.get(`album/${albumId}`)
 }
 function getAlbums() {
-    // return storageService.get(STORAGE_KEY, stationId)
     return httpService.get(`album`)
 }
 function getArtistById(artistId) {
-    // return storageService.get(STORAGE_KEY, stationId)
     return httpService.get(`artist/${artistId}`)
 }
 
@@ -86,7 +88,6 @@ function getEmptyStation() {
     }
 
 }
-
 
 
 

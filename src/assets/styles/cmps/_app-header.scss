@@ -10,6 +10,7 @@
     .actions {
         display: flex;
         align-items: center;
+        
         gap: 17px;
         flex-grow: 1;
         input {
@@ -36,14 +37,8 @@
             justify-content: center;
             width: 32px;
             transition: 0.1s;
-            button {
-                color: white;
-                cursor: pointer;
-
-                background-color: transparent;
-                border: none;
-                font-size: 30px;
-                font-weight: 300;
+            .icon-btn {
+                height: 18px;
             }
             &:hover {
                 background-color: rgba(0, 0, 0, 0.3);

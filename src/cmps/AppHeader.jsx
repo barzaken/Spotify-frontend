@@ -8,8 +8,8 @@ import {alert } from "../store/actions/station.actions.js"
 import Logo from '../assets/imgs/spotifylogo.png';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
-
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 export const AppHeader = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -55,10 +55,10 @@ export const AppHeader = () => {
       </div>
             <div className="actions">
               <div className="btn-container">
-              <button onClick={() => navigate(-1)}> {'<'} </button>  
+               <ArrowBackIosNewIcon onClick={() => navigate(-1)} className="icon-btn"/>
               </div>
               <div className="btn-container">
-              <button onClick={() => navigate(1)}> {'>'} </button>
+                <ArrowForwardIosIcon  onClick={() => navigate(1)}  className="icon-btn" />
               </div>
 
                 {location.pathname === '/search' && <input onChange={(event) => setTerm(event.target.value)} type="text" placeholder="What do you want to listen to?"></input>}
